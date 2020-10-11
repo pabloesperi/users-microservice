@@ -6,7 +6,7 @@ varios roles y cada rol puede tener varios usuarios.
 	private List <Role> roles;
 	
 De esta forma sólo se establece la relación unilateral. Desde la dueña de la relación, usuarios,
-hasta la de los roles respectivos. 
+hasta la de los roles respectivos.
 
 Se crean con spring las dos tablas como así también la tabla intermedia que une las dos
 llaves foráneas.
