@@ -1,0 +1,34 @@
+El @ManyToMany establece el tipo de relación muchos a muchos. O sea, un usuario puede tener
+varios roles y cada rol puede tener varios usuarios.
+
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	private List <Role> roles;
+	
+De esta forma sólo se establece la relación unilateral. Desde la dueña de la relación, usuarios,
+hasta la de los roles respectivos. 
+
+Se crean con spring las dos tablas como así también la tabla intermedia que une las dos
+llaves foráneas.
+
+Si queremos establecer una relación bidireccional, se agrega la propiedad MappedBy, en la contraparte
+
+@ManyToMany(fetch = FetchType.LAZY, MappedBy="roles")
+private List <User> users;
+
+la palabra "roles" viene del nombre de la propiedad en la contraparte.
+
+Anotación @JoinTable:
+
+Esta anotación se utiliza para establecer el nombre de la tabla intermedia, como así también 
+los nombres de sus columnas.
+
+uniqueConstraints:
+
+uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "roles_id"})})
+
+Mediante esta anotación se establece que habrá un único par de valores para dichas columnas. 
+O sea, que no se puede repetir un user_id con un roles_id, determinado.
+
+Rest Repositories: es una dependencia que se agrega para crear un repositorio sin necesidad
+de una clase de implementación de la interfaz, ni controlador.
